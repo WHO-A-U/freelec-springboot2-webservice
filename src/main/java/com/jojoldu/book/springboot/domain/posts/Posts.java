@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Getter               //
+@Getter               // getter 와 인자가 없는 생성자를 만들어 준다.
 @NoArgsConstructor    // lombok의 기능들
 @Entity    //테이블과 링크될 클래스임을 나타낸다 JAP
 public class Posts {
