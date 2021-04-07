@@ -1,4 +1,4 @@
-package com.jojoldu.book.springboot.web;
+package com.jojoldu.book.springboot;
 
 
 import org.junit.Test;
