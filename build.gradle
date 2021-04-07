@@ -29,7 +29,8 @@ group 'com.jojoldu.book'
 version '1.0-SNAPSHOT'
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.projectlombok:lombok')
+    testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
