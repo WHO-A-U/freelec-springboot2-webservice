@@ -1,5 +1,6 @@
 package com.jojoldu.book.springboot.domain.posts;
 
+import com.jojoldu.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import javax.persistence.Id;
 @Getter               // getter 와 인자가 없는 생성자를 만들어 준다.
 @NoArgsConstructor    // lombok의 기능들
 @Entity    //테이블과 링크될 클래스임을 나타낸다 JAP
-public class Posts {
+public class Posts extends BaseTimeEntity { //시간을 자동으로 저장하기위해 BaseTimeEntity 상속
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)   //PK 생성규칙을 나타냄
