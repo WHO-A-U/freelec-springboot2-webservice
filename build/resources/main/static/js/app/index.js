@@ -52,20 +52,20 @@ var main={
         }).fail(function(error){
             alert(JSON.stringify(data));
         })
-    },
-    delete : function () {
+    }
+    ,
+    delete:function(){
         var id = $('#id').val();
-
         $.ajax({
-            type: 'DELETE',
-            url: '/api/v1/posts/'+id,
-            dataType: 'json',
+            type:"DELETE",
+            url:'/api/v1/posts/'+id,
+            dataType:'json',
             contentType:'application/json; charset=utf-8'
-        }).done(function() {
-            alert('글이 삭제되었습니다.');
-            window.location.href = '/';
-        }).fail(function (error) {
-            alert(JSON.stringify(error));
+        }).done(function(){
+            alert("삭제되었습니다");
+            window.location.href="/";
+        }).fail(function(err){
+            alert(err);
         })
     }
 }
