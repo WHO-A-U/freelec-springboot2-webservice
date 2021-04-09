@@ -21,19 +21,19 @@ public class Todos extends BaseTimeEntity {
     private String title;
 
     @Column(length = 500,nullable = false)
-    private String sequence;
+    private int sequence;
 
     @Column(length = 500,nullable = false)
     private String type;
 
     @Builder
-    public Todos(String title , String sequence , String type){
+    public Todos(String title , int sequence , String type){
         this.title = title;
         this.sequence = sequence;
         this.type = type;
     }
 
     public void updateType(String type){
-        this.type=type;
+        this.type = type;
     }
 }
