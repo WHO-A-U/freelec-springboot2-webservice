@@ -53,5 +53,20 @@ var main={
             alert(JSON.stringify(data));
         })
     }
+    ,
+    delete:function(){
+        var id = $('#id').val();
+        $.ajax({
+            type:"DELETE",
+            url:'/api/v1/posts/'+id,
+            dataType:'json',
+            contentType:'application/json; charset=utf-8'
+        }).done(function(){
+            alert("삭제되었습니다");
+            window.location.href="/";
+        }).fail(function(err){
+            alert(err);
+        })
+    }
 }
 main.init();
