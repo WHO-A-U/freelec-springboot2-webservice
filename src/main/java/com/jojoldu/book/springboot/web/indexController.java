@@ -1,7 +1,7 @@
 package com.jojoldu.book.springboot.web;
 
 import com.jojoldu.book.springboot.service.PostsService;
-import com.jojoldu.book.springboot.web.dto.PostsResponseDto;
+import com.jojoldu.book.springboot.web.dto.posts.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,5 +31,11 @@ public class indexController {
         model.addAttribute("post", dto);
 
         return "posts-update";
+    }
+
+    @GetMapping("/todos")
+    public String todosIndex(Model model){
+
+        return "todos-index";
     }
 }
