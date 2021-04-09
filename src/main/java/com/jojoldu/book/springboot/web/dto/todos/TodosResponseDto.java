@@ -8,7 +8,7 @@ public class TodosResponseDto {
     private final Long id;
     private final String title;
     private final String type;
-    private final String sequence;
+    private final int sequence;
 
     public TodosResponseDto(Todos entity){
         this.id = entity.getId();
