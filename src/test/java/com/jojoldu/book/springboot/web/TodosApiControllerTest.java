@@ -2,6 +2,8 @@ package com.jojoldu.book.springboot.web;
 
 import com.jojoldu.book.springboot.domain.todos.Todos;
 import com.jojoldu.book.springboot.domain.todos.TodosRepository;
+import com.jojoldu.book.springboot.service.TodosService;
+import com.jojoldu.book.springboot.web.dto.todos.TodosListResponseDto;
 import com.jojoldu.book.springboot.web.dto.todos.TodosSaveRequestDto;
 import com.jojoldu.book.springboot.web.dto.todos.TodosUpdateRequestDto;
 import org.junit.After;
@@ -17,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,6 +36,9 @@ public class TodosApiControllerTest {
 
     @Autowired
     private TodosRepository todosRepository;
+
+    @Autowired
+    private TodosService todosService;
 
     @After
     public void tearDown() throws Exception{
@@ -97,6 +103,8 @@ public class TodosApiControllerTest {
 
         HttpEntity<TodosUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
 
+
+
         ResponseEntity<Long> responseEntity = restTemplate
                 .exchange(url, HttpMethod.PUT,requestEntity,Long.class);
 
@@ -110,4 +118,45 @@ public class TodosApiControllerTest {
 
     }
 
+    @Test
+    public void get_todos_test() throws Exception{
+        String title1="title";
+        String type1="DOING";
+        int sequence1=1;
+
+        Todos savedTodos1 = todosRepository.save(
+                Todos.builder()
+                        .title(title1)
+                        .type(type1)
+                        .sequence(sequence1)
+                        .build());
+
+        String title2="title";
+        String type2="DONE";
+        int sequence2=1;
+
+        Todos savedTodos2 = todosRepository.save(
+                Todos.builder()
+                        .title(title2)
+                        .type(type2)
+                        .sequence(sequence2)
+                        .build());
+
+        HashMap<String,List<TodosListResponseDto>> map = todosService.findAllByType();
+
+        List<TodosListResponseDto> todoList = map.get("TODO");
+        List<TodosListResponseDto> doingList = map.get("DOING");
+        List<TodosListResponseDto> doneList = map.get("DONE");
+
+        for(TodosListResponseDto x : todoList){
+            System.out.println(x);
+
+        }
+        for(TodosListResponseDto x : doingList){
+            System.out.println(x);
+        }
+        for(TodosListResponseDto x : doneList){
+            System.out.println(x);
+        }
+    }
 }
